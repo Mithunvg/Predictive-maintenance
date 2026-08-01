@@ -1,16 +1,28 @@
 """Streamlit inference app for the Predictive Maintenance model.
 
-Deployed to a Hugging Face Space (see src/deploy_to_space.py). Loads the
-registered best model + scaler from the HF Model Hub (mithunvg/predictive-
-maintenance-model), takes the five raw sensor readings + product type a
-technician would read off a machine, and returns a failure probability and
-risk tier.
+Deployed to Streamlit Community Cloud (main file path: deployment/app.py),
+with HF Spaces (src/deploy_to_space.py) as an alternative once HF Pro is
+available. Loads the registered best model + scaler from the HF Model Hub
+(Mitzzzz/predictive-maintenance-model), takes the five raw sensor readings
++ product type a technician would read off a machine, and returns a
+failure probability and risk tier.
 """
 import os
 import sys
 
 import pandas as pd
 import streamlit as st
+
+# Streamlit Community Cloud secrets (set in the app's Settings -> Secrets)
+# arrive via st.secrets, not automatically as environment variables -- but
+# inference.py reads HF_TOKEN / HF_USERNAME from os.environ, so mirror them
+# here before importing it.
+try:
+    for _key in ("HF_TOKEN", "HF_USERNAME"):
+        if _key in st.secrets:
+            os.environ[_key] = st.secrets[_key]
+except Exception:
+    pass  # no secrets.toml configured (e.g. local run) -- fall back to plain env vars
 
 sys.path.insert(0, os.path.dirname(__file__))
 from inference import predict_from_raw_inputs, load_artifacts
@@ -31,8 +43,8 @@ with st.sidebar:
     st.markdown(
         """
         **Project:** MLOps — Predictive Maintenance
-        **Model source:** `mithunvg/predictive-maintenance-model`
-        **Dataset source:** `mithunvg/predictive-maintenance-ai4i`
+        **Model source:** `Mitzzzz/predictive-maintenance-model`
+        **Dataset source:** `Mitzzzz/predictive-maintenance-ai4i`
 
         This Space is deployed automatically by the GitHub Actions pipeline
         (`.github/workflows/pipeline.yml`) whenever the repository's `main`
