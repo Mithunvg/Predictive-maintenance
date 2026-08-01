@@ -6,7 +6,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  HF_USERNAME: mithunvg
+  HF_USERNAME:  Mitzzzz
 
 jobs:
   run-pipeline:
