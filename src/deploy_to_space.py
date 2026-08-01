@@ -12,7 +12,7 @@ import os
 import shutil
 import sys
 
-HF_NAMESPACE = os.environ.get("HF_USERNAME", "mithunvg")
+HF_NAMESPACE = os.environ.get("HF_USERNAME", "Mitzzzz")
 HF_SPACE_REPO = f"{HF_NAMESPACE}/predictive-maintenance-app"
 DEPLOYMENT_DIR = os.path.join(os.path.dirname(__file__), "..", "deployment")
 UTILS_SRC = os.path.join(os.path.dirname(__file__), "utils.py")
