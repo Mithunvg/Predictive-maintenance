@@ -3,8 +3,9 @@ title: Predictive Maintenance
 emoji: 🛠️
 colorFrom: blue
 colorTo: red
-sdk: docker
-app_port: 7860
+sdk: streamlit
+sdk_version: "1.60.0"
+app_file: app.py
 pinned: false
 license: mit
 ---
@@ -22,3 +23,9 @@ probability and risk tier.
 Deployed automatically by the GitHub Actions pipeline in
 [Mitzzzz/predictive-maintenance](https://github.com/Mitzzzz/predictive-maintenance)
 whenever `main` is updated.
+
+This Space runs on HF's native Streamlit SDK (free on `cpu-basic`). A
+`Dockerfile` is also provided in this folder for containerized/self-hosted
+deployment — HF Spaces' Docker and Gradio SDKs require a PRO subscription
+on `cpu-basic` as of 2026, so the free-tier live Space uses the Streamlit
+SDK instead while the Docker path remains fully functional and documented.
