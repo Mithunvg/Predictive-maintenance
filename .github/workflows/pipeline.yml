@@ -1,0 +1,59 @@
+name: Predictive Maintenance MLOps Pipeline
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+env:
+  HF_USERNAME: mithunvg
+
+jobs:
+  run-pipeline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Step 1 — Data Registration (push raw dataset to HF Hub)
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: python src/data_registration.py
+
+      - name: Step 2 — Data Preparation (clean, engineer, split, push splits)
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: python src/data_prep.py
+
+      - name: Step 3 — Model Training with MLflow Tracking + HF Model Registration
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: python src/train.py
+
+      - name: Step 4 — Deploy Streamlit App to HF Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: python src/deploy_to_space.py
+
+      - name: Upload experiment results as build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-outputs
+          path: |
+            models/experiment_results.csv
+            models/best_model_info.json
+            mlruns/
+          retention-days: 30
