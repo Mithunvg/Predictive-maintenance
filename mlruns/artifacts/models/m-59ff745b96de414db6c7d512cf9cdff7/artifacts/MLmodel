@@ -1,0 +1,23 @@
+artifact_path: file:///home/user/Predictive-maintenance/mlruns/artifacts/models/m-59ff745b96de414db6c7d512cf9cdff7/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.11.15
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.9.0
+    skops_trusted_types: null
+mlflow_version: 3.15.0
+model_id: m-59ff745b96de414db6c7d512cf9cdff7
+model_size_bytes: 3363030
+model_uuid: m-59ff745b96de414db6c7d512cf9cdff7
+prompts: null
+run_id: cd379688916d4346b9272cc57c3ff7ee
+utc_time_created: '2026-08-01 19:26:46.803148'

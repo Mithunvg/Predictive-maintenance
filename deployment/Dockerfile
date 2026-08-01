@@ -10,7 +10,7 @@ COPY app.py inference.py utils.py ./
 # HF_TOKEN is injected at runtime as a Hugging Face Space "Repository secret"
 # so the app always serves the latest model registered by the CI pipeline
 # without needing to rebuild the image.
-ENV HF_USERNAME=mithunvg
+ENV HF_USERNAME=Mitzzzz
 EXPOSE 7860
 
 HEALTHCHECK CMD curl --fail http://localhost:7860/_stcore/health || exit 1

@@ -1,7 +1,7 @@
 """Streamlit inference app for the Predictive Maintenance model.
 
 Deployed to a Hugging Face Space (see src/deploy_to_space.py). Loads the
-registered best model + scaler from the HF Model Hub (mithunvg/predictive-
+registered best model + scaler from the HF Model Hub (Mitzzzz/predictive-
 maintenance-model), takes the five raw sensor readings + product type a
 technician would read off a machine, and returns a failure probability and
 risk tier.
@@ -31,8 +31,8 @@ with st.sidebar:
     st.markdown(
         """
         **Project:** MLOps — Predictive Maintenance
-        **Model source:** `mithunvg/predictive-maintenance-model`
-        **Dataset source:** `mithunvg/predictive-maintenance-ai4i`
+        **Model source:** `Mitzzzz/predictive-maintenance-model`
+        **Dataset source:** `Mitzzzz/predictive-maintenance-ai4i`
 
         This Space is deployed automatically by the GitHub Actions pipeline
         (`.github/workflows/pipeline.yml`) whenever the repository's `main`

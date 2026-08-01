@@ -57,9 +57,9 @@ write access). **One-time setup required to go live:**
 
 Once that runs successfully, the following go live:
 
-- Dataset: `https://huggingface.co/datasets/mithunvg/predictive-maintenance-ai4i`
-- Model: `https://huggingface.co/mithunvg/predictive-maintenance-model`
-- App: `https://huggingface.co/spaces/mithunvg/predictive-maintenance-app`
+- Dataset: `https://huggingface.co/datasets/Mitzzzz/predictive-maintenance-ai4i`
+- Model: `https://huggingface.co/Mitzzzz/predictive-maintenance-model`
+- App: `https://huggingface.co/spaces/Mitzzzz/predictive-maintenance-app`
 
 ## Best model
 

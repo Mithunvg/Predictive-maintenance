@@ -615,7 +615,7 @@ deployment_summary = pd.DataFrame(
             "src/deploy_to_space.py",
             "python:3.11-slim",
             "7860 (HF Spaces default)",
-            f"https://huggingface.co/spaces/{os.environ.get('HF_USERNAME', 'mithunvg')}/predictive-maintenance-app",
+            f"https://huggingface.co/spaces/{os.environ.get('HF_USERNAME', 'Mitzzzz')}/predictive-maintenance-app",
         ],
     }
 )
