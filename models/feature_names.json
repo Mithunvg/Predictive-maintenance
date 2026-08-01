@@ -1,0 +1,11 @@
+[
+  "Type",
+  "Air_Temperature_K",
+  "Process_Temperature_K",
+  "Rotational_Speed_rpm",
+  "Torque_Nm",
+  "Tool_Wear_min",
+  "Power_W",
+  "Delta_Temp_K",
+  "Wear_Torque"
+]
