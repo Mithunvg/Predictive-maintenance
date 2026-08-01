@@ -569,9 +569,13 @@ registration_summary
 # Model Hub, accepts the five raw sensor readings + product type as UI
 # inputs, reproduces the exact `src/utils.py` feature-engineering pipeline on
 # a single-row DataFrame, and returns a failure probability + risk label.
-# The app is containerised with `deployment/Dockerfile` and deployed to a
-# **Hugging Face Space** via `src/deploy_to_space.py`, which is invoked
-# automatically by the GitHub Actions workflow (Section 6).
+# The app is containerised with `deployment/Dockerfile` and is live at
+# **https://predictive-maintenance-c82gkyjurxgbewdzqvav6q.streamlit.app/**
+# on Streamlit Community Cloud. `src/deploy_to_space.py` additionally attempts
+# to deploy the same app to a Hugging Face Space as part of the GitHub Actions
+# workflow (Section 6); as of 2026 this requires an HF Pro subscription for
+# interactive compute on the free tier, so that step logs a clear soft-skip
+# rather than deploying live — Streamlit Community Cloud is used instead.
 #
 # The cell below exercises the exact same inference path the Streamlit app
 # uses, on a few held-out test rows, as a deployment smoke test.
@@ -607,15 +611,15 @@ pd.DataFrame(preds)
 # %%
 deployment_summary = pd.DataFrame(
     {
-        "Component": ["Dockerfile", "App entrypoint", "Dependencies file", "Hosting script", "Base image", "Exposed port", "HF Space"],
+        "Component": ["Dockerfile", "App entrypoint", "Dependencies file", "Hosting script", "Base image", "Live app (Streamlit Community Cloud)", "HF Space (requires HF Pro)"],
         "Value": [
             "deployment/Dockerfile",
             "deployment/app.py (Streamlit)",
             "deployment/requirements.txt",
             "src/deploy_to_space.py",
             "python:3.11-slim",
-            "7860 (HF Spaces default)",
-            f"https://huggingface.co/spaces/{os.environ.get('HF_USERNAME', 'mithunvg')}/predictive-maintenance-app",
+            "https://predictive-maintenance-c82gkyjurxgbewdzqvav6q.streamlit.app/",
+            f"https://huggingface.co/spaces/{os.environ.get('HF_USERNAME', 'Mitzzzz')}/predictive-maintenance-app (blocked on free tier — see Section 6)",
         ],
     }
 )
@@ -641,19 +645,21 @@ with open(os.path.join("..", ".github", "workflows", "pipeline.yml")) as f:
 # ---
 # ## 7. Output Evaluation
 #
-# This section is completed with live evidence once the workflow above has
-# run at least once against a real `HF_TOKEN` secret (see the Final Report,
-# Section 7, for the actual GitHub Actions run screenshot and live Streamlit
-# Space screenshot). The cell below captures the repository folder structure
-# produced by this pipeline as executed here, which is the "screenshot of
-# folder structure" artefact required by the rubric.
+# The GitHub Actions workflow has run successfully end-to-end against the
+# live `HF_TOKEN` secret — data registration, data preparation, and model
+# training/registration all complete and publish to the Hugging Face Hub
+# (`Mitzzzz/predictive-maintenance-ai4i`, `Mitzzzz/predictive-maintenance-model`).
+# See the Final Report, Section 7, for the GitHub Actions run screenshot and
+# the live Streamlit app screenshots. The cell below captures the repository
+# folder structure produced by this pipeline as executed here, which is the
+# "screenshot of folder structure" artefact required by the rubric.
 
 # %%
 def print_tree(root, prefix="", max_depth=3, depth=0):
     if depth > max_depth:
         return
     entries = sorted(
-        [e for e in os.listdir(root) if e not in {".git", "__pycache__", ".ipynb_checkpoints"}]
+        [e for e in os.listdir(root) if e not in {".git", "__pycache__", ".ipynb_checkpoints", ".claude"}]
     )
     for i, entry in enumerate(entries):
         path = os.path.join(root, entry)
