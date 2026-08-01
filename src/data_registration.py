@@ -15,7 +15,7 @@ import sys
 
 import pandas as pd
 
-HF_NAMESPACE = os.environ.get("HF_USERNAME", "mithunvg")
+HF_NAMESPACE = os.environ.get("HF_USERNAME", "Mitzzzz")
 HF_DATASET_REPO = f"{HF_NAMESPACE}/predictive-maintenance-ai4i"
 RAW_CSV_PATH = os.path.join(os.path.dirname(__file__), "..", "data", "raw", "ai4i2020.csv")
 

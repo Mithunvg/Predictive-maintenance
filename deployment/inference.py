@@ -15,7 +15,7 @@ import pandas as pd
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 from utils import CONTINUOUS_FEATURES, FEATURE_COLUMNS, TYPE_MAP
 
-HF_NAMESPACE = os.environ.get("HF_USERNAME", "mithunvg")
+HF_NAMESPACE = os.environ.get("HF_USERNAME", "Mitzzzz")
 HF_MODEL_REPO = f"{HF_NAMESPACE}/predictive-maintenance-model"
 LOCAL_MODELS_DIR = os.path.join(os.path.dirname(__file__), "..", "models")
 

@@ -37,7 +37,7 @@ from xgboost import XGBClassifier
 sys.path.insert(0, os.path.dirname(__file__))
 from utils import TARGET_COLUMN
 
-HF_NAMESPACE = os.environ.get("HF_USERNAME", "mithunvg")
+HF_NAMESPACE = os.environ.get("HF_USERNAME", "Mitzzzz")
 HF_MODEL_REPO = f"{HF_NAMESPACE}/predictive-maintenance-model"
 PROCESSED_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "processed")
 MODELS_DIR = os.path.join(os.path.dirname(__file__), "..", "models")
