@@ -25,14 +25,18 @@ def push_space(repo_id: str = HF_SPACE_REPO) -> bool:
             "[deploy_to_space] HF_TOKEN not set — skipping live deployment to "
             f"https://huggingface.co/spaces/{repo_id}. In CI (GitHub Actions "
             f"with the HF_TOKEN secret configured) this step pushes the "
-            f"deployment/ folder as a Docker-SDK Space."
+            f"deployment/ folder as a Streamlit-SDK Space."
         )
         return False
 
     from huggingface_hub import HfApi
 
     api = HfApi(token=token)
-    api.create_repo(repo_id=repo_id, repo_type="space", space_sdk="docker", exist_ok=True, private=False)
+    # HF Spaces' Docker/Gradio SDKs require a PRO subscription on the free
+    # cpu-basic tier as of 2026; the Streamlit SDK remains free, so the live
+    # Space uses it. deployment/Dockerfile is still shipped for
+    # containerized/self-hosted deployment (see deployment/README.md).
+    api.create_repo(repo_id=repo_id, repo_type="space", space_sdk="streamlit", exist_ok=True, private=False)
 
     # utils.py lives in src/ in the main repo but must ship alongside
     # inference.py inside the Space's Docker build context.
